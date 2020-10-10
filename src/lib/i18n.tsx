@@ -25,7 +25,7 @@ export function I18nextProvider({ locale, localeResource, children }) {
 
     interpolation: {
       escapeValue: false, // react already safe from xss
-      format: function (value, format) {
+      format (value, format) {
         if (format === 'uppercase') {
           return value.toUpperCase();
         }

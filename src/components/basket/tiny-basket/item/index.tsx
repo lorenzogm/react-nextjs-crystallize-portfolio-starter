@@ -30,7 +30,7 @@ export default function TinyBasketItem({ actions, item }) {
   useEffect(() => {
     setDrawAttention(true);
 
-    let timeout = setTimeout(
+    const timeout = setTimeout(
       () => setDrawAttention(false),
       drawAttentionDuration
     );

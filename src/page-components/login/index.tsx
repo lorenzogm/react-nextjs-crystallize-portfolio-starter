@@ -21,7 +21,7 @@ export default function Login() {
   async function handleSubmit(event) {
     event.preventDefault();
 
-    setUserData(Object.assign({}, userData, { loading: true, error: '' }));
+    setUserData({ ...userData, loading: true, error: ''});
     const { email } = userData;
 
     try {
@@ -33,10 +33,8 @@ export default function Login() {
       }
 
       setUserData(
-        Object.assign({}, userData, {
-          loading: false,
-          message: message
-        })
+        { ...userData, loading: false,
+          message}
       );
     } catch (error) {
       console.error(
@@ -46,10 +44,8 @@ export default function Login() {
 
       const { response } = error;
       setUserData(
-        Object.assign({}, userData, {
-          loading: false,
-          error: response ? response.statusText : error.message
-        })
+        { ...userData, loading: false,
+          error: response ? response.statusText : error.message}
       );
     }
   }
@@ -75,9 +71,7 @@ export default function Login() {
                   required
                   onChange={(event) =>
                     setUserData(
-                      Object.assign({}, userData, {
-                        email: event.target.value
-                      })
+                      { ...userData, email: event.target.value}
                     )
                   }
                 />

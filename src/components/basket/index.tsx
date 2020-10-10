@@ -1,10 +1,11 @@
 import React, { useEffect, useReducer, useRef } from 'react';
 
 import { retrieveFromCache, persistToCache } from './cache';
-export { TinyBasket } from './tiny-basket';
 import reducer, { initialState } from './reducer';
 import { useExtendedProductVariants } from './extend-product-variants';
 import { getChannel } from './shared-channel';
+
+export { TinyBasket } from './tiny-basket';
 
 const BasketContext = React.createContext();
 

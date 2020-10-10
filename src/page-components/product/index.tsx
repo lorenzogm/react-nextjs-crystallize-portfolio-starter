@@ -7,10 +7,10 @@ import { screen } from 'ui';
 import Layout from 'components/layout';
 import ShapeComponents from 'components/shape/components';
 
+import Topics from 'components/topics';
 import VariantSelector from './variant-selector';
 import Buy from './buy';
 import query from './query';
-import Topics from 'components/topics';
 
 import {
   Outer,

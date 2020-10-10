@@ -28,7 +28,7 @@ export const screen = new Proxy(
     },
   },
   {
-    get: function (obj, prop) {
+    get (obj, prop) {
       if (prop in obj) {
         return obj[prop];
       }

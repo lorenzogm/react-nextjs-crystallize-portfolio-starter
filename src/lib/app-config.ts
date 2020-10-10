@@ -18,7 +18,7 @@ const appConfig = {
   }))
 };
 
-export const locales = appConfig.locales;
+export const {locales} = appConfig;
 
 export const defaultLocale = appConfig.locales.find((l) => l.isDefault);
 

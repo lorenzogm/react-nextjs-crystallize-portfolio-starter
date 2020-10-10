@@ -63,19 +63,17 @@ export default produce(function reducer(draft, { action, ...rest }) {
             item.quantity += 1;
           }
         }
-      } else {
-        if (!['remove-item', 'decrement-item'].includes(action)) {
+      } else if (!['remove-item', 'decrement-item'].includes(action)) {
           draft.cart.push({
             sku,
             path
           });
         }
-      }
 
       /**
        * Set addItemTime in order for the tiny basket to run an
        * animation to help drawing attention to the added item
-       **/
+       * */
       if (action === 'add-item') {
         draft.cart.find((i) => i.sku === sku).addItemTime = Date.now();
       }

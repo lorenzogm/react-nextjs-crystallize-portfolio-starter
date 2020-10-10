@@ -20,7 +20,7 @@ export function getServerSideProps({ req, res }) {
   const locale =
     locales.find((l) => l.appLanguage === preferredLanguage) || defaultLocale;
 
-  res.writeHead(301, { Location: '/' + locale.urlPrefix });
+  res.writeHead(301, { Location: `/${  locale.urlPrefix}` });
   res.end();
   return { props: {} };
 }

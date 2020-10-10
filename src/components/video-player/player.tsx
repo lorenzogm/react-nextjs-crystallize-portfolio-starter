@@ -13,13 +13,13 @@ const MOV_EXTENSION = /\.(mov)($|\?)/i;
 function getVideoType(url) {
   if (HLS_EXTENSION.test(url)) {
     return 'application/x-mpegURL';
-  } else if (DASH_EXTENSION.test(url)) {
+  } if (DASH_EXTENSION.test(url)) {
     return 'application/dash+xml';
-  } else if (MOV_EXTENSION.test(url)) {
+  } if (MOV_EXTENSION.test(url)) {
     return 'video/mp4';
-  } else {
+  } 
     return `video/mp4`;
-  }
+  
 }
 const playSize = 100;
 

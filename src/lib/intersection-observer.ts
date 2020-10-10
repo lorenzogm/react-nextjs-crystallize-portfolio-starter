@@ -18,9 +18,9 @@ export function useIntersectionObserver({ ref, ...options }) {
         observer.observe(ref.current);
 
         return () => observer.disconnect();
-      } else {
+      } 
         setIsIntersecting(true);
-      }
+      
     }
   }, [ref, options]);
 
