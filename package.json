@@ -17,7 +17,7 @@
     "start": "NODE_ENV=production next start",
     "start-platformsh": "NODE_ENV=production next start -p $PORT",
     "prod": "npm run build && npm run start",
-    "lint": "eslint .",
+    "lint": "eslint ./src",
     "validate": "lint-staged",
     "repo:cleanup-payment-providers": "node ./_repo-utils/cleanup-payment-providers.js",
     "postinstall": "node ./_repo-utils/postinstall.js"
