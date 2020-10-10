@@ -1,0 +1,12 @@
+{
+  "extends": "@valtech-ch/eslint-config-react/tsconfig",
+  "compilerOptions": {
+    "baseUrl": "./src"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
