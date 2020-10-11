@@ -1,7 +1,7 @@
-import appConfig, { isMultilingual } from 'lib/app-config';
+import appConfig, { isMultilingual } from 'lib/app-config'
 
 export function getStaticProps() {
-  return { props: {} };
+  return { props: {} }
 }
 
 export const getStaticPaths = !isMultilingual
@@ -9,8 +9,8 @@ export const getStaticPaths = !isMultilingual
   : () => {
       return {
         paths: appConfig.locales.map((l) => `/${l.urlPrefix}/checkout`),
-        fallback: false
-      };
-    };
+        fallback: false,
+      }
+    }
 
-export { default } from 'page-components/checkout';
+export { default } from 'themes/crystallize/templates/CheckoutTemplate/CheckoutTemplate'
