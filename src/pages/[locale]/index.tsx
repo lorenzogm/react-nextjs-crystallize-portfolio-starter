@@ -1,9 +1,18 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 
 import { simplyFetchFromGraph } from 'lib/graph'
 import fragments from 'lib/graph/fragments'
 import appConfig, { getLocaleFromContext, isMultilingual } from 'lib/app-config'
-import HomeTemplate from 'themes/crystallize/templates/HomeTemplate/HomeTemplate'
+
+const HomeTemplate = dynamic(
+  () =>
+    import(
+      `themes/${
+        process.env.NEXT_PUBLIC_THEME || 'crystallize'
+      }/templates/HomeTemplate/HomeTemplate`
+    ),
+)
 
 export default function IndexPage({ catalogue, preview }) {
   const [grid] =

@@ -1,9 +1,18 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 
 import { simplyFetchFromGraph } from 'lib/graph'
-import ProductTemplate from 'themes/crystallize/templates/ProductTemplate/ProductTemplate'
 
 import query from './query'
+
+const ProductTemplate = dynamic(
+  () =>
+    import(
+      `themes/${
+        process.env.NEXT_PUBLIC_THEME || 'crystallize'
+      }/templates/ProductTemplate/ProductTemplate`
+    ),
+)
 
 export async function getData({ asPath, language, preview = null }) {
   const { data } = await simplyFetchFromGraph({

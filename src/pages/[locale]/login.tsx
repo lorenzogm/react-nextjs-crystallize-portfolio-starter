@@ -2,7 +2,16 @@ import appConfig, { isMultilingual } from 'lib/app-config'
 import { sendMagicLink } from 'lib/rest-api'
 import { useAuth } from 'contexts/auth-context'
 import { useState } from 'react'
-import LoginTemplate from 'themes/crystallize/templates/LoginTemplate/LoginTemplate'
+import dynamic from 'next/dynamic'
+
+const LoginTemplate = dynamic(
+  () =>
+    import(
+      `themes/${
+        process.env.NEXT_PUBLIC_THEME || 'crystallize'
+      }/templates/LoginTemplate/LoginTemplate`
+    ),
+)
 
 export default function LoginPage() {
   const auth = useAuth()
