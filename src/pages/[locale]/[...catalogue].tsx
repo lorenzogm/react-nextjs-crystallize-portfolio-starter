@@ -7,42 +7,48 @@
  * If we get nothing back from Crystallize, it's a 404
  */
 
-import React from 'react';
-import { useRouter } from 'next/router';
-import Head from 'next/head';
-import DefaultErrorPage from 'next/error';
+import React from 'react'
+import { useRouter } from 'next/router'
+import Head from 'next/head'
+import DefaultErrorPage from 'next/error'
 
-import { simplyFetchFromGraph } from 'lib/graph';
+import { simplyFetchFromGraph } from 'lib/graph'
 import appConfig, {
   getLocaleFromContext,
   isMultilingual,
-  defaultLocale
-} from 'lib/app-config';
-import Layout from 'components/layout';
+  defaultLocale,
+} from 'lib/app-config'
+import Layout from 'themes/crystallize/components/layout'
 
-import DocPage, { getData as getDataDoc } from 'page-components/document';
-import FolderPage, { getData as getDataFolder } from 'page-components/folder';
-import ProdPage, { getData as getDataProd } from 'page-components/product';
+import DocPage, {
+  getData as getDataDoc,
+} from 'components/pages/DocumentPage/DocumentPage'
+import FolderPage, {
+  getData as getDataFolder,
+} from 'components/pages/FolderPage/FolderPage'
+import ProdPage, {
+  getData as getDataProd,
+} from 'components/pages/ProductPage/ProductPage'
 
 const typesMap = {
   document: {
     component: DocPage,
-    getData: getDataDoc
+    getData: getDataDoc,
   },
   folder: {
     component: FolderPage,
-    getData: getDataFolder
+    getData: getDataFolder,
   },
   product: {
     component: ProdPage,
-    getData: getDataProd
-  }
-};
+    getData: getDataProd,
+  },
+}
 
 export async function getStaticProps({ params, preview }) {
-  const { catalogue } = params;
-  const locale = getLocaleFromContext(params);
-  const asPath = `/${catalogue.join('/')}`;
+  const { catalogue } = params
+  const locale = getLocaleFromContext(params)
+  const asPath = `/${catalogue.join('/')}`
 
   try {
     // Get the item type
@@ -57,56 +63,56 @@ export async function getStaticProps({ params, preview }) {
       `,
       variables: {
         language: locale.crystallizeCatalogueLanguage,
-        path: asPath
-      }
-    });
-    const { type } = getItemType.data.catalogue;
+        path: asPath,
+      },
+    })
+    const { type } = getItemType.data.catalogue
 
-    const renderer = typesMap[type] || typesMap.folder;
+    const renderer = typesMap[type] || typesMap.folder
 
     const data = await renderer.getData({
       asPath,
       language: locale.crystallizeCatalogueLanguage,
-      preview
-    });
+      preview,
+    })
 
     return {
       props: {
         ...data,
-        type
+        type,
       },
-      revalidate: 1
-    };
+      revalidate: 1,
+    }
   } catch (error) {
-    console.warn(`Could not get data for ${asPath}`);
+    console.warn(`Could not get data for ${asPath}`)
   }
 
   return {
     props: {},
-    revalidate: 1
-  };
+    revalidate: 1,
+  }
 }
 
 export async function getStaticPaths() {
-  const paths = [];
+  const paths = []
 
   if (isMultilingual) {
-    await Promise.all(appConfig.locales.map(handleLocale));
+    await Promise.all(appConfig.locales.map(handleLocale))
   } else {
-    await handleLocale(defaultLocale);
+    await handleLocale(defaultLocale)
   }
 
   async function handleLocale(locale) {
     function handleItem({ path, name, children }) {
       if (path !== '/index' && !name?.startsWith('_')) {
         if (isMultilingual) {
-          paths.push(`/${locale.urlPrefix}${path}`);
+          paths.push(`/${locale.urlPrefix}${path}`)
         } else {
-          paths.push(path);
+          paths.push(path)
         }
       }
 
-      children?.forEach(handleItem);
+      children?.forEach(handleItem)
     }
 
     try {
@@ -144,33 +150,33 @@ export async function getStaticPaths() {
           }
         `,
         variables: {
-          language: locale.crystallizeCatalogueLanguage
-        }
-      });
+          language: locale.crystallizeCatalogueLanguage,
+        },
+      })
 
-      allCatalogueItems.data.catalogue.children.forEach(handleItem);
+      allCatalogueItems.data.catalogue.children.forEach(handleItem)
     } catch (error) {
       console.error(
         'Could not get all catalogue items for ',
-        JSON.stringify(locale, null, 3)
-      );
-      console.log(error);
+        JSON.stringify(locale, null, 3),
+      )
+      console.log(error)
     }
   }
 
   return {
     paths,
-    fallback: true
-  };
+    fallback: true,
+  }
 }
 
 export default function GenericCatalogueItem({ type, ...rest }) {
-  const router = useRouter();
-  const renderer = typesMap[type] || typesMap.folder;
-  const Component = renderer.component;
+  const router = useRouter()
+  const renderer = typesMap[type] || typesMap.folder
+  const Component = renderer.component
 
   if (router.isFallback) {
-    return <Layout loading />;
+    return <Layout loading />
   }
 
   // No data was found for route. It's a 404
@@ -182,8 +188,8 @@ export default function GenericCatalogueItem({ type, ...rest }) {
         </Head>
         <DefaultErrorPage statusCode={404} />
       </>
-    );
+    )
   }
 
-  return <Component {...rest} />;
+  return <Component {...rest} />
 }

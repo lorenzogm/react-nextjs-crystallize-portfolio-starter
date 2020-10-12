@@ -1,13 +1,13 @@
-import MetaTags from 'components/head/meta-tags';
-import { AuthProvider } from 'components/auth-context';
-import { SettingsProvider } from 'components/settings-context';
-import { BasketProvider } from 'components/basket';
-import { simplyFetchFromGraph } from 'lib/graph';
-import { getLocaleFromContext, defaultLocale } from 'lib/app-config';
-import { I18nextProvider } from 'lib/i18n';
+import MetaTags from 'themes/crystallize/components/head/meta-tags'
+import { AuthProvider } from 'contexts/auth-context'
+import { SettingsProvider } from 'contexts/settings-context'
+import { BasketProvider } from 'themes/crystallize/components/basket'
+import { simplyFetchFromGraph } from 'lib/graph'
+import { getLocaleFromContext, defaultLocale } from 'lib/app-config'
+import { I18nextProvider } from 'lib/i18n'
 
 function MyApp({ Component, pageProps, commonData }) {
-  const { tenant, mainNavigation, locale, localeResource } = commonData;
+  const { tenant, mainNavigation, locale, localeResource } = commonData
   return (
     <>
       <MetaTags />
@@ -24,14 +24,14 @@ function MyApp({ Component, pageProps, commonData }) {
         </SettingsProvider>
       </I18nextProvider>
     </>
-  );
+  )
 }
 
 MyApp.getInitialProps = async function ({ ctx }) {
   try {
-    const locale = getLocaleFromContext(ctx);
+    const locale = getLocaleFromContext(ctx)
 
-    const localeResource = await import(`../locales/${locale.appLanguage}`);
+    const localeResource = await import(`../locales/${locale.appLanguage}`)
 
     /**
      * Get shared data for all pages
@@ -41,8 +41,8 @@ MyApp.getInitialProps = async function ({ ctx }) {
     const {
       data: {
         tenant,
-        mainNavigation: { children: mainNavigation }
-      }
+        mainNavigation: { children: mainNavigation },
+      },
     } = await simplyFetchFromGraph({
       query: `
         query COMMON_DATA($language: String!) {
@@ -63,21 +63,21 @@ MyApp.getInitialProps = async function ({ ctx }) {
         }
       `,
       variables: {
-        language: locale.crystallizeCatalogueLanguage
-      }
-    });
+        language: locale.crystallizeCatalogueLanguage,
+      },
+    })
 
     return {
       commonData: {
         localeResource: localeResource.default,
         locale,
         tenant,
-        mainNavigation: mainNavigation?.filter((i) => !i.name.startsWith('_'))
-      }
-    };
+        mainNavigation: mainNavigation?.filter((i) => !i.name.startsWith('_')),
+      },
+    }
   } catch (error) {
-    console.error(error);
-    console.warn('Could not fetch common page data');
+    console.error(error)
+    console.warn('Could not fetch common page data')
 
     // Fallback values
     return {
@@ -86,12 +86,12 @@ MyApp.getInitialProps = async function ({ ctx }) {
         locale: defaultLocale,
         tenant: {
           defaults: {
-            currency: 'usd'
-          }
-        }
-      }
-    };
+            currency: 'usd',
+          },
+        },
+      },
+    }
   }
-};
+}
 
-export default MyApp;
+export default MyApp
