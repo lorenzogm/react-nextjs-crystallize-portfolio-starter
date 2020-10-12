@@ -5,7 +5,7 @@ import reducer, { initialState } from './reducer';
 import { useExtendedProductVariants } from './extend-product-variants';
 import { getChannel } from './shared-channel';
 
-export { TinyBasket } from './tiny-basket';
+export { TinyBasket } from 'themes/crystallize/elements/BasketTiny/BasketTiny';
 
 const BasketContext = React.createContext();
 

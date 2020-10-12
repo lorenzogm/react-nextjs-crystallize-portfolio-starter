@@ -2,11 +2,11 @@ import React from 'react';
 
 import { useT } from 'lib/i18n';
 
-import { useBasket } from '../index';
-import { Totals } from '../totals';
-import TinyBasketItem from './item';
+import { useBasket } from 'contexts/BasketContext/BasketContext';
+import { Totals } from 'themes/crystallize/elements/BasketTotals/BasketTotals';
+import BasketTinyItem from 'themes/crystallize/elements/BasketTinyItem/BasketTinyItem';
 
-import { Outer, Items, ItemOuter, BasketIsEmpty } from './styles';
+import { Outer, Items, ItemOuter, BasketIsEmpty } from './BasketTiny.styles';
 
 export function TinyBasket() {
   const t = useT();
@@ -29,7 +29,7 @@ export function TinyBasket() {
       <Items>
         {cart.map((item) => (
           <ItemOuter key={item.sku} item={item}>
-            <TinyBasketItem item={item} actions={actions} />
+            <BasketTinyItem item={item} actions={actions} />
           </ItemOuter>
         ))}
       </Items>

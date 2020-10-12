@@ -18,7 +18,7 @@ import {
   Price,
   PriceVat,
   drawAttentionDuration,
-} from './styles'
+} from './BasketTinyItem.styles'
 
 export default function TinyBasketItem({ actions, item }) {
   const t = useT()

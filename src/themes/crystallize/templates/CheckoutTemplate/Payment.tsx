@@ -7,7 +7,7 @@ import styled from 'styled-components'
 
 import appConfig, { useLocale } from 'lib/app-config'
 import { useT } from 'lib/i18n'
-import { useBasket } from 'themes/crystallize/components/basket'
+import { useBasket } from 'contexts/BasketContext/BasketContext'
 
 import {
   Input,

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 import Link from 'themes/crystallize/components/link'
-import { useBasket, TinyBasket } from 'themes/crystallize/components/basket'
+import { useBasket, TinyBasket } from 'contexts/BasketContext/BasketContext'
 import { Button } from 'themes/crystallize/ui'
 import { useT } from 'lib/i18n'
 

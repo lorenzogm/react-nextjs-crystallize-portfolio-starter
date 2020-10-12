@@ -1,9 +1,9 @@
 import React from 'react'
 
-import { useBasket } from 'themes/crystallize/components/basket'
+import { useBasket } from 'contexts/BasketContext/BasketContext'
 import Layout from 'themes/crystallize/components/layout'
 import OrderItems from 'themes/crystallize/components/order-items'
-import { Totals } from 'themes/crystallize/components/basket/totals'
+import { Totals } from 'themes/crystallize/elements/BasketTotals/BasketTotals'
 import { useT } from 'lib/i18n'
 
 import Payment from './Payment'

@@ -3,7 +3,7 @@ import { LayoutContext } from '@crystallize/react-layout'
 
 import { Button } from 'themes/crystallize/ui'
 import { CurrencyValue } from 'themes/crystallize/components/currency-value'
-import { useBasket } from 'themes/crystallize/components/basket'
+import { useBasket } from 'contexts/BasketContext/BasketContext'
 import { useT } from 'lib/i18n'
 
 import { ProductFooter, Price } from './ProductPage.styles'

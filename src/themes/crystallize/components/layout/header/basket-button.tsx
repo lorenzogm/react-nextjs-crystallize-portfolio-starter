@@ -1,7 +1,7 @@
 import React from 'react'
 import { LayoutContext } from '@crystallize/react-layout'
 
-import { useBasket } from 'themes/crystallize/components/basket'
+import { useBasket } from 'contexts/BasketContext/BasketContext'
 import IconBasket from 'themes/crystallize/ui/icons/basket'
 
 import { Basket, BasketQuantity } from './styles'

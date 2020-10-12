@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { useT } from 'lib/i18n';
-import { useBasket } from '../index';
+import { useBasket } from 'contexts/BasketContext/BasketContext';
 
-import { Outer, Row, Rows } from './styles';
+import { Outer, Row, Rows } from './BasketTotals.styles';
 
 export const Totals = () => {
   const t = useT();

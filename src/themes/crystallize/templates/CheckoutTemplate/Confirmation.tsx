@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import is from 'styled-is'
 
 import Layout from 'themes/crystallize/components/layout'
-import { useBasket } from 'themes/crystallize/components/basket'
+import { useBasket } from 'contexts/BasketContext/BasketContext'
 import OrderItems from 'themes/crystallize/components/order-items'
 import { H1, H3, Outer, Header } from 'themes/crystallize/ui'
 import { useT } from 'lib/i18n'
