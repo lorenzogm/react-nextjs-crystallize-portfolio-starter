@@ -1,7 +1,5 @@
 import MetaTags from 'components/elements/MetaTags/MetaTags'
-import { AuthProvider } from 'contexts/auth-context'
 import { SettingsProvider } from 'contexts/settings-context'
-import { BasketProvider } from 'contexts/BasketContext/BasketContext'
 import { simplyFetchFromGraph } from 'lib/graph'
 import { getLocaleFromContext, defaultLocale } from 'lib/app-config'
 import { I18nextProvider } from 'lib/i18n'
@@ -16,11 +14,7 @@ function MyApp({ Component, pageProps, commonData }) {
           currency={tenant.defaults.currency}
           mainNavigation={mainNavigation}
         >
-          <AuthProvider>
-            <BasketProvider>
-              <Component {...pageProps} />
-            </BasketProvider>
-          </AuthProvider>
+          <Component {...pageProps} />
         </SettingsProvider>
       </I18nextProvider>
     </>

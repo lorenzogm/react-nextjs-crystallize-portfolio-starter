@@ -15,11 +15,7 @@ export default function Footer() {
   return (
     <Outer>
       <Link href="/">
-        <a>
-          <Logo>
-            <img src="/static/shop-logo.svg" alt="" />
-          </Logo>
-        </a>
+        <a>LCAYUSO</a>
       </Link>
       <NavList>
         <h5>{t('layout.menu')}</h5>
@@ -31,12 +27,6 @@ export default function Footer() {
           </li>
         ))}
       </NavList>
-      <Powered>
-        <p>{t('layout.ecomBy')}</p>
-        <a href="https://crystallize.com" aria-label="crystallize.com">
-          <LogoCrystallize size={10} />
-        </a>
-      </Powered>
     </Outer>
   )
 }

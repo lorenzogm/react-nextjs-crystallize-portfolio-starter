@@ -6,7 +6,7 @@ import { useT } from 'lib/i18n'
 
 import { Outer } from './HomeTemplate.styles'
 
-export default function HomeTemplate({ grid, preview }) {
+export default function HomeTemplate({ grid, preview, ...rest }) {
   const t = useT()
 
   return (

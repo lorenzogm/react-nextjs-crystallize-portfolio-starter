@@ -5,7 +5,6 @@ import CrystallizeLayout from '@crystallize/react-layout'
 import { Spinner } from 'themes/crystallize/ui'
 import GlobalStyle from 'themes/crystallize/ui/global'
 
-import Aside from './aside'
 import Header from './header'
 import Footer from './footer'
 import {
@@ -53,7 +52,7 @@ export default function Layout({
           <Footer />
         </>
       ) : (
-        <CrystallizeLayout right={Aside}>
+        <CrystallizeLayout>
           <Header simple={simple} preview={preview} />
           <Main>{loading ? <Loader /> : children}</Main>
           <Footer />

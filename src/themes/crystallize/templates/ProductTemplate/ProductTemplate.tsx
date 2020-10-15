@@ -8,7 +8,6 @@ import ShapeComponents from 'themes/crystallize/components/shape/components'
 
 import Topics from 'themes/crystallize/components/topics'
 import VariantSelector from './VariantSelector'
-import Buy from './Buy'
 
 import {
   Outer,
@@ -70,8 +69,6 @@ export default function ProductTemplate({ product, preview }) {
                 onVariantChange={onVariantChange}
               />
             )}
-
-            <Buy product={product} selectedVariant={selectedVariant} />
           </Info>
         </Sections>
         <Content>

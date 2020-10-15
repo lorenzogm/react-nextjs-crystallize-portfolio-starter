@@ -5,18 +5,15 @@ import { H2 as H, responsive } from 'themes/crystallize/ui'
 
 export const HeroImage = styled.div`
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   margin-bottom: 100px;
-  grid-gap: 5px;
+  grid-gap: 128px;
 `
 
 export const Img = styled(Image)`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  &:first-child {
-    grid-column-end: span 2;
-  }
 
   > img {
     display: block;

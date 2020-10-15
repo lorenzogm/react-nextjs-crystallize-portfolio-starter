@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import { useRouter } from 'next/router'
 
-import { useAuth } from 'contexts/auth-context'
 import { useSettings } from 'contexts/settings-context'
 import Link from 'themes/crystallize/components/link'
 import { useT } from 'lib/i18n'
 
 import BurgerButton from './burger-button'
-import BasketButton from './basket-button'
 import LocaleSwitcher from './locale-switcher'
 import {
   Outer,
@@ -22,7 +20,6 @@ import {
 export default function Header({ simple, preview }) {
   const t = useT()
   const { mainNavigation } = useSettings()
-  const auth = useAuth()
   const router = useRouter()
 
   const [navOpen, setNavOpen] = useState(false)
@@ -40,11 +37,7 @@ export default function Header({ simple, preview }) {
       )}
       <Outer simple={simple}>
         <Link href="/">
-          <a>
-            <Logo>
-              <img src="/static/shop-logo.svg" alt="" />
-            </Logo>
-          </a>
+          <a>LCAYUSO</a>
         </Link>
         <Nav open={navOpen}>
           <NavList>
@@ -57,19 +50,11 @@ export default function Header({ simple, preview }) {
             ))}
           </NavList>
         </Nav>
-        <NavActions open={navOpen}>
-          <LocaleSwitcher />
-          {auth.isLoggedIn ? (
-            <button type="button" onClick={auth.logout}>
-              Logout
-            </button>
-          ) : (
-            <Link href="/login">
-              <a>{t('customer.login.title')}</a>
-            </Link>
-          )}
-        </NavActions>
-        {!simple && <BasketButton />}
+        {process.env.NEXT_PUBLIC_DISABLE_LANGUAGES === 'true' ? null : (
+          <NavActions open={navOpen}>
+            <LocaleSwitcher />
+          </NavActions>
+        )}
         <BurgerButton active={navOpen} onClick={() => setNavOpen(!navOpen)} />
       </Outer>
     </>
