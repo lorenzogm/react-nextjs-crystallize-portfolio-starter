@@ -8,6 +8,16 @@ export const HeroImage = styled.div`
   grid-template-columns: repeat(3, 1fr);
   margin-bottom: 100px;
   grid-gap: 128px;
+
+  @media (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 32px;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 64px;
+  }
 `
 
 export const Img = styled(Image)`
